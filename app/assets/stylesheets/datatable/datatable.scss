@@ -10,24 +10,24 @@
 }
 
 .datatable td {
-  position: relative;
+  padding: 0;
 }
-
-.datatable td {
-  span {
-    position: absolute;
-    left: 5px;
-    top: 5px;
-    right: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-}
+//
+//.datatable td {
+//  span {
+//    position: absolute;
+//    left: 5px;
+//    top: 5px;
+//    right: 0;
+//    white-space: nowrap;
+//    overflow: hidden;
+//    text-overflow: ellipsis;
+//  }
+//}
 
 .datatable tr:nth-child(even){background-color: #f2f2f2;}
 
-.datatable tr:hover {background-color: #ddd;}
+.datatable td:hover {background-color: #ddd;}
 
 .datatable th {
   padding-top: 12px;
@@ -72,4 +72,28 @@
 
 .sort-enabled {
   color: black;
+}
+
+.edit-book-btn {
+  width: 100%;
+  height: 30px;
+  font-family: "Sans-Serif";
+  text-align: left;
+  padding: 0px 0px 0px 5px;
+  border: none;
+  background-color: transparent;
+  font-size: 16px;
+}
+
+.edit-form-field {
+  border: none;
+  height: 18px;
+  font-size: 16px;
+  padding: 0px 0px 0px 5px;
+  background-color: transparent;
+  font-family: "Sans-Serif";
+}
+
+.edit-form-field:focus {
+  outline: none;
 }

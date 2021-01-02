@@ -1,9 +1,26 @@
+<%= button_to books_path, style: 'display:none' %> <!--necessary. For some reason the first button_to in turbo_frame is not displaying correctly otherwise.. -->
 <% @books.each do |book| %>
   <tr>
-    <td><span><%= book.title %></span></td>
-    <td><span><%= book.author %></span></td>
-    <td><span><%= book.publisher %></span></td>
-    <td><span><%= book.genre %></span></td>
+    <td>
+        <%= turbo_frame_tag 'book_title' do %>
+          <%= button_to book.title, edit_book_path(book, search_params: @search_params), method: :get, class: 'edit-book-btn' %>
+        <% end %>
+    </td>
+    <td>
+        <%= turbo_frame_tag 'book_author' do %>
+          <%= button_to book.author, edit_book_path(book, search_params: @search_params), method: :get, class: 'edit-book-btn' %>
+        <% end %>
+    </td>
+    <td>
+        <%= turbo_frame_tag 'book_publisher' do %>
+          <%= button_to book.publisher, edit_book_path(book, search_params: @search_params), method: :get, class: 'edit-book-btn' %>
+        <% end %>
+    </td>
+    <td>
+        <%= turbo_frame_tag 'book_genre' do %>
+          <%= button_to book.genre, edit_book_path(book, search_params: @search_params), method: :get, class: 'edit-book-btn' %>
+        <% end %>
+    </td>
   </tr>
 <% end %>
 

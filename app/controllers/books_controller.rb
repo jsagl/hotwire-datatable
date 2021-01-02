@@ -29,6 +29,7 @@ class BooksController < ApplicationController
     @books = order.present? ? @books.order(order) : @books.order('title ASC')
     @books = @books.limit(@limit).offset(offset)
 
+    @search_params = params.permit(:order, :limit, :page, :author, :title, :publisher, :genre).to_json
 
     respond_to do |format|
       format.turbo_stream
@@ -37,10 +38,14 @@ class BooksController < ApplicationController
   end
 
   def edit
+    @search_params = params[:search_params]
   end
 
   def update
-    @book.update!(permitted_params)
+    @book.update!(permitted_params.slice(:title, :author, :publisher, :genre))
+    search_params = JSON.parse(permitted_params[:search_params])
+
+    redirect_to books_url(search_params)
   end
 
   private
@@ -50,7 +55,7 @@ class BooksController < ApplicationController
   end
 
   def permitted_params
-    params.require(:book).permit(:title, :author, :publisher, :genre)
+    params.require(:book).permit(:title, :author, :publisher, :genre, :search_params)
   end
 end
 
