@@ -11,7 +11,7 @@ export default class extends Controller {
 
   submit(e) {
     if (e.keyCode !== 13) {
-      this.resetPage();
+      this.resetPageNumber();
       this.submitTarget.click(); // don't submit form again if enter is pressed
     }
     this.submitTarget.disabled = false;
@@ -56,10 +56,10 @@ export default class extends Controller {
 
   setLimit(event) {
     this.limitTarget.value = event.currentTarget.value;
-    this.submitWithoutDebounce();
+    this.submit(event);
   }
 
-  resetPage() {
+  resetPageNumber() {
     this.pageTarget.value = 1;
   }
 
