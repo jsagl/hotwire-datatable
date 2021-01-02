@@ -1,0 +1,75 @@
+.datatable {
+  border-collapse: collapse;
+  width: 80%;
+  margin: auto;
+}
+
+.datatable td, .datatable th {
+  border: 1px solid #ddd;
+  height: 30px;
+}
+
+.datatable td {
+  position: relative;
+}
+
+.datatable td {
+  span {
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    right: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.datatable tr:nth-child(even){background-color: #f2f2f2;}
+
+.datatable tr:hover {background-color: #ddd;}
+
+.datatable th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #22e39e;
+  color: white;
+}
+
+.datatable .last-row-cell {
+ border: none;
+}
+
+.datatable .last-row-cell {
+  border: none;
+}
+
+.datatable .last-row {
+  background-color: white !important;
+}
+
+.datatable .last-row:hover {
+  background-color: white;
+}
+
+#navigation-cell {
+  text-align: right;
+}
+
+#limit-cell {
+  text-align: left;
+}
+
+.active-nav-btn {
+  background-color: #22e39e;
+  color: white;
+}
+
+.sort-btn {
+  color: lightgray;
+}
+
+.sort-enabled {
+  color: black;
+}

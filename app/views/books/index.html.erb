@@ -1,0 +1,35 @@
+<h1>My books</h1>
+
+<div data-controller="datatable">
+  <%= form_with url: books_path, method: :get, remote: true do |f| %>
+    <table class="datatable">
+      <thead>
+        <tr>
+          <th data-header="title">
+            <%= f.text_field :title, data: {action: "keyup->datatable#submit"}, placeholder: 'Title' %>
+            <button type="button" class="sort-btn sort-enabled" data-action="click->datatable#sort"><i class="fas fa-caret-up"></i></button>
+          </th>
+          <th data-header="author">
+            <%= f.text_field :author, data: {action: "keyup->datatable#submit"}, placeholder: 'Author' %>
+            <button type="button" class="sort-btn" data-action="click->datatable#sort"><i class="fas fa-caret-up"></i></button>
+          </th>
+          <th data-header="publisher">
+            <%= f.text_field :publisher, data: {action: "keyup->datatable#submit"}, placeholder: 'Publisher' %>
+            <button type="button" class="sort-btn" data-action="click->datatable#sort"><i class="fas fa-caret-up"></i></button>
+          </th>
+          <th data-header="genre">
+            <%= f.text_field :genre, data: {action: "keyup->datatable#submit"}, placeholder: 'Genre' %>
+            <button type="button" class="sort-btn" data-action="click->datatable#sort"><i class="fas fa-caret-up"></i></button>
+          </th>
+        </tr>
+      </thead>
+      <tbody id="books">
+        <%= render partial: 'book_rows' %>
+      </tbody>
+    </table>
+    <%= f.hidden_field :limit, data: {datatable_target: "limit"} %>
+    <%= f.hidden_field :page, data: {datatable_target: "page"} %>
+    <%= f.hidden_field :order, data: {datatable_target: "order"} %>
+    <%= f.submit style: "display: none", data: {datatable_target: "submit"} %>
+  <% end %>
+</div>

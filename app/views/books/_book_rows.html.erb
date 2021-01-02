@@ -1,0 +1,28 @@
+<% @books.each do |book| %>
+  <tr>
+    <td><span><%= book.title %></span></td>
+    <td><span><%= book.author %></span></td>
+    <td><span><%= book.publisher %></span></td>
+    <td><span><%= book.genre %></span></td>
+  </tr>
+<% end %>
+
+<tr class="last-row">
+  <td colspan="1" class="last-row-cell" id='limit-cell'>
+    <select name="limit" data-action="change->datatable#setLimit">
+      <option value="10" <%= @limit == 10 ? 'selected' : '' %>>10</option>
+      <option value="50" <%= @limit == 50 ? 'selected' : '' %>>50</option>
+      <option value="100" <%= @limit == 100 ? 'selected' : '' %>>100</option>
+    </select>
+     Records / page
+  </td>
+  <td colspan="3" class='last-row-cell' id='navigation-cell'>
+    <% (1..@pages_count).to_a.each do |page_num| %>
+      <% if page_num == @selected_page %>
+        <button class="nav-btn active-nav-btn" type="button" data-action="click->datatable#selectPage"><%= page_num %></button>
+      <% else %>
+        <button class="nav-btn" type="button" data-action="click->datatable#selectPage"><%= page_num %></button>
+      <% end %>
+    <% end %>
+  </td>
+</tr>
