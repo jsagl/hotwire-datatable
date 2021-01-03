@@ -10,24 +10,11 @@
 }
 
 .datatable td {
+  position: relative;
   padding: 0;
 }
-//
-//.datatable td {
-//  span {
-//    position: absolute;
-//    left: 5px;
-//    top: 5px;
-//    right: 0;
-//    white-space: nowrap;
-//    overflow: hidden;
-//    text-overflow: ellipsis;
-//  }
-//}
 
-.datatable tr:nth-child(even){background-color: #f2f2f2;}
-
-.datatable td:hover {background-color: #ddd;}
+.datatable td:hover {background-color: #efefef;}
 
 .datatable th {
   padding-top: 12px;
@@ -74,22 +61,26 @@
   color: black;
 }
 
-.edit-book-btn {
-  width: 100%;
-  height: 30px;
-  font-family: "Sans-Serif";
-  text-align: left;
-  padding: 0px 0px 0px 5px;
-  border: none;
-  background-color: transparent;
+.edit-book-link {
+  color: black;
   font-size: 16px;
+  text-decoration: none;
+  font-family: "Sans-Serif";
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.edit-form {
+  height: 100%;
 }
 
 .edit-form-field {
-  border: none;
-  height: 18px;
+  border: 2px solid blue;
+  height: calc(100% - 4px);
+  width: calc(100% - 4px);
   font-size: 16px;
-  padding: 0px 0px 0px 5px;
+  padding: 0;
   background-color: transparent;
   font-family: "Sans-Serif";
 }

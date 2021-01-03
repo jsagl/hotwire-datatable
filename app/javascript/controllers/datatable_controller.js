@@ -3,7 +3,7 @@ import { Controller } from "stimulus"
 let debounce = require('lodash/debounce');
 
 export default class extends Controller {
-  static targets = [ "submit", "order", "page", "limit" ]
+  static targets = [ "submit", "order", "page", "limit", "submitEdit", "cancelEdit" ]
 
   connect(){
     this.submit = debounce(this.submit, 300).bind(this)
@@ -63,4 +63,13 @@ export default class extends Controller {
     this.pageTarget.value = 1;
   }
 
+  submitEdit(event) {
+    this.submitEditTarget.click();
+  }
+
+  cancelEdit(event) {
+    if(event.keyCode === 27) {
+      this.cancelEditTarget.click();
+    }
+  }
 }
