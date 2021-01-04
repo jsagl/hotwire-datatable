@@ -1,31 +1,37 @@
 import { Controller } from "stimulus"
 
-let debounce = require('lodash/debounce');
 
 export default class extends Controller {
-  static targets = [ "submit", "order", "page", "limit", "submitEdit", "editForm" ]
+  static targets = [ "submit", "order", "page", "limit", "submitEdit", 'cancelEdit' ]
 
-  connect(){
-    this.submit = debounce(this.submit, 300).bind(this)
-  }
+  submit(e, resetPageNumber= true) {
+    if (resetPageNumber) { this.resetPageNumber() }
+    if (e && e.keyCode === 13) { return } // don't submit form again if enter is pressed
 
-  submit(e) {
-    if (e.keyCode !== 13) {
-      this.resetPageNumber();
-      this.submitTarget.click(); // don't submit form again if enter is pressed
-    }
-    this.submitTarget.disabled = false;
-  }
-
-  submitWithoutDebounce() {
-    this.submitTarget.click();
+    this.submitTarget.click()
     this.submitTarget.disabled = false;
   }
 
   sort(event) {
-    this.disableOtherSortButtons(event.currentTarget);
+    const clickedSortButton = event.currentTarget
 
-    const icon = event.currentTarget.firstChild;
+    this.disableOtherSortButtons(clickedSortButton);
+    clickedSortButton.classList.add('sort-enabled');
+
+    const order = this.setOrder(clickedSortButton.firstChild)
+    const sortBy = clickedSortButton.parentNode.dataset.header
+
+    this.orderTarget.value = `${sortBy}_${order}`
+    this.submit(false, false);
+  }
+
+  disableOtherSortButtons(target) {
+    document.querySelectorAll('.sort-btn').forEach((btn) => {
+      btn.classList.remove('sort-enabled');
+    })
+  }
+
+  setOrder(icon) {
     let order = 'asc'
 
     if (icon.dataset.icon === 'caret-up') {
@@ -35,28 +41,17 @@ export default class extends Controller {
       icon.dataset.icon = 'caret-up';
     }
 
-    const sortBy = event.currentTarget.parentNode.dataset.header
-    this.orderTarget.value = `${sortBy}_${order}`
-
-    this.submitWithoutDebounce();
-  }
-
-  disableOtherSortButtons(target) {
-    document.querySelectorAll('.sort-btn').forEach((btn) => {
-      btn.classList.remove('sort-enabled');
-    })
-
-    target.classList.add('sort-enabled');
+    return order
   }
 
   selectPage(event) {
     this.pageTarget.value = event.currentTarget.innerHTML;
-    this.submitWithoutDebounce();
+    this.submit(false, false);
   }
 
   setLimit(event) {
     this.limitTarget.value = event.currentTarget.value;
-    this.submit(event);
+    this.submit(event, true);
   }
 
   resetPageNumber() {
@@ -64,20 +59,25 @@ export default class extends Controller {
   }
 
   submitEdit(event) {
-    event.currentTarget.classList.remove('focused')
+    event.currentTarget.classList.remove('focused');
     event.currentTarget.form.querySelector('input[type="submit"]').click();
   }
 
   addFocusClass(event) {
-    const inputField = event.currentTarget
-    inputField.classList.add('focused')
-    setTimeout(function(){ inputField.selectionStart = inputField.selectionEnd = 10000; }, 0);
-
+    const inputField = event.currentTarget;
+    inputField.classList.add('focused');
+    this.moveCursorToStringEnd(inputField);
   }
 
-  cancelEdit(event) {
-    if(event.keyCode === 27) {
+  moveCursorToStringEnd(field) {
+    setTimeout(function(){ field.selectionStart = field.selectionEnd = 10000; }, 0);
+  }
+
+  handleEditKeys(event) {
+    if(event.keyCode === 27) { // do not submit changes if escape key is pressed
       this.cancelEditTarget.click();
+    } else if (event.keyCode === 13) { //submit changes if enter is pressed
+      this.submitEdit(event);
     }
   }
 }

@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :find_book, only: [:edit, :update]
+  before_action :find_book, only: [:show, :edit, :update]
 
   def index
     @limit = params[:limit].present? ? params[:limit].to_i : 10
@@ -16,11 +16,16 @@ class BooksController < ApplicationController
     end
   end
 
+  def show
+  end
+
   def edit
   end
 
   def update
     @book.update!(permitted_params.slice(:title, :author, :publisher, :genre))
+
+    redirect_to book_url(@book)
   end
 
   private

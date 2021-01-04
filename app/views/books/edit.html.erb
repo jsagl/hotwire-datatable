@@ -1,27 +1,31 @@
 <%= turbo_frame_tag "book_title" do %>
-  <%= form_with model: @book, class: 'edit-form', data: {action: 'keyup->datatable#cancelEdit'} do |f| %>
-    <%= f.text_field :title, class: "edit-form-field", autofocus: true, data: {action: "focusout->datatable#submitEdit focus->datatable#addFocusClass"} %>
+  <%= form_with model: @book, class: 'edit-form' do |f| %>
+    <%= f.text_field :title, class: "edit-form-field", autofocus: true, data: {action: "focusout->datatable#submitEdit keyup->datatable#handleEditKeys focus->datatable#addFocusClass"} %>
     <%= f.submit style: "display: none", data: {datatable_target: 'submitEdit'} %>
+    <%= link_to 'cancel', book_path(@book), data: {datatable_target: 'cancelEdit'} ,style: 'display: none' %>
   <% end %>
 <% end %>
 
 <%= turbo_frame_tag "book_author" do %>
-  <%= form_with model: @book, class: 'edit-form', data: {action: 'keyup->datatable#cancelEdit'} do |f| %>
-    <%= f.text_field :author, class: "edit-form-field", autofocus: true, data: {action: "focusout->datatable#submitEdit focus->datatable#addFocusClass"} %>
+  <%= form_with model: @book, class: 'edit-form' do |f| %>
+    <%= f.text_field :author, class: "edit-form-field", autofocus: true, data: {action: "focusout->datatable#submitEdit keyup->datatable#handleEditKeys focus->datatable#addFocusClass"} %>
     <%= f.submit style: "display: none", data: {datatable_target: 'submitEdit'} %>
+    <%= link_to 'cancel', book_path(@book), data: {datatable_target: 'cancelEdit'} ,style: 'display: none' %>
   <% end %>
 <% end %>
 
 <%= turbo_frame_tag "book_publisher" do %>
-  <%= form_with model: @book, class: 'edit-form', data: {action: 'keyup->datatable#cancelEdit'} do |f| %>
-    <%= f.text_field :publisher, class: "edit-form-field", autofocus: true, data: {action: "focusout->datatable#submitEdit focus->datatable#addFocusClass"} %>
+  <%= form_with model: @book, class: 'edit-form' do |f| %>
+    <%= f.text_field :publisher, class: "edit-form-field", autofocus: true, data: {action: "focusout->datatable#submitEdit keyup->datatable#handleEditKeys focus->datatable#addFocusClass"} %>
     <%= f.submit style: "display: none", data: {datatable_target: 'submitEdit'} %>
+    <%= link_to 'cancel', book_path(@book), data: {datatable_target: 'cancelEdit'} ,style: 'display: none' %>
   <% end %>
 <% end %>
 
 <%= turbo_frame_tag "book_genre" do %>
-  <%= form_with model: @book, class: 'edit-form', data: {action: 'keyup->datatable#cancelEdit'} do |f| %>
-    <%= f.text_field :genre, class: "edit-form-field", autofocus: true, data: {action: "focusout->datatable#submitEdit focus->datatable#addFocusClass"} %>
+  <%= form_with model: @book, class: 'edit-form' do |f| %>
+    <%= f.text_field :genre, class: "edit-form-field", autofocus: true, data: {action: "focusout->datatable#submitEdit keyup->datatable#handleEditKeys focus->datatable#addFocusClass"} %>
     <%= f.submit style: "display: none", data: {datatable_target: 'submitEdit'} %>
+    <%= link_to 'cancel', book_path(@book), data: {datatable_target: 'cancelEdit'} ,style: 'display: none' %>
   <% end %>
 <% end %>
