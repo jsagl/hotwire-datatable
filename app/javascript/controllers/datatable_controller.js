@@ -3,7 +3,7 @@ import { Controller } from "stimulus"
 let debounce = require('lodash/debounce');
 
 export default class extends Controller {
-  static targets = [ "submit", "order", "page", "limit", "submitEdit", "cancelEdit" ]
+  static targets = [ "submit", "order", "page", "limit", "submitEdit", "editForm" ]
 
   connect(){
     this.submit = debounce(this.submit, 300).bind(this)
@@ -64,7 +64,15 @@ export default class extends Controller {
   }
 
   submitEdit(event) {
-    this.submitEditTarget.click();
+    event.currentTarget.classList.remove('focused')
+    event.currentTarget.form.querySelector('input[type="submit"]').click();
+  }
+
+  addFocusClass(event) {
+    const inputField = event.currentTarget
+    inputField.classList.add('focused')
+    setTimeout(function(){ inputField.selectionStart = inputField.selectionEnd = 10000; }, 0);
+
   }
 
   cancelEdit(event) {

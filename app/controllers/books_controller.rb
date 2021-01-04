@@ -43,9 +43,6 @@ class BooksController < ApplicationController
 
   def update
     @book.update!(permitted_params.slice(:title, :author, :publisher, :genre))
-    search_params = JSON.parse(permitted_params[:search_params])
-
-    redirect_to books_url(search_params)
   end
 
   private
