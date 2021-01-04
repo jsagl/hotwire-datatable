@@ -1,8 +1,10 @@
 class BooksRetriever
-  attr_accessor :params
+  attr_accessor :params, :limit, :offset
 
-  def initialize(params)
+  def initialize(params, limit, offset)
     self.params = params
+    self.limit = limit
+    self.offset = offset
   end
 
   def books
@@ -16,19 +18,7 @@ class BooksRetriever
     books_query = order.present? ? books_query.order(order) : books_query.order('title ASC')
     books_query = books_query.limit(limit).offset(offset)
 
-    @books ||= books_query
-  end
-
-  def limit
-    params[:limit].present? ? params[:limit].to_i : 10
-  end
-
-  def selected_page
-    params[:page].to_i.zero? ? 1 : params[:page].to_i
-  end
-
-  def offset
-    (selected_page - 1) * limit
+    @books = books_query
   end
 
   def pages_count
