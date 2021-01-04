@@ -33,7 +33,7 @@
 
 <tr class="last-row">
   <td colspan="1" class="last-row-cell" id='limit-cell'>
-    <select name="limit" data-action="change->datatable#setLimit">
+    <select name="limit" data-action="change->filter#setLimit">
       <option value="10" <%= @limit == 10 ? 'selected' : '' %>>10</option>
       <option value="50" <%= @limit == 50 ? 'selected' : '' %>>50</option>
       <option value="100" <%= @limit == 100 ? 'selected' : '' %>>100</option>
@@ -43,9 +43,9 @@
   <td colspan="3" class='last-row-cell' id='navigation-cell'>
     <% (1..@pages_count).to_a.each do |page_num| %>
       <% if page_num == @selected_page %>
-        <button class="nav-btn active-nav-btn" type="button" data-action="click->datatable#selectPage"><%= page_num %></button>
+        <button class="nav-btn active-nav-btn" type="button" data-action="click->filter#selectPage"><%= page_num %></button>
       <% else %>
-        <button class="nav-btn" type="button" data-action="click->datatable#selectPage"><%= page_num %></button>
+        <button class="nav-btn" type="button" data-action="click->filter#selectPage"><%= page_num %></button>
       <% end %>
     <% end %>
   </td>
