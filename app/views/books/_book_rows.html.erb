@@ -2,28 +2,28 @@
     <tr>
       <td>
         <%= turbo_frame_tag 'book_title' do %>
-          <%= link_to edit_book_path(book, search_params: @search_params), class: 'edit-book-link' do %>
+          <%= link_to edit_book_path(book), class: 'edit-book-link' do %>
             <span><%= book.title %></span>
           <% end %>
         <% end %>
       </td>
       <td>
         <%= turbo_frame_tag 'book_author' do %>
-          <%= link_to edit_book_path(book, search_params: @search_params), class: 'edit-book-link' do %>
+          <%= link_to edit_book_path(book), class: 'edit-book-link' do %>
             <span><%= book.author %></span>
           <% end %>
         <% end %>
       </td>
       <td>
         <%= turbo_frame_tag 'book_publisher' do %>
-          <%= link_to edit_book_path(book, search_params: @search_params), class: 'edit-book-link' do %>
+          <%= link_to edit_book_path(book), class: 'edit-book-link' do %>
             <span><%= book.publisher %></span>
           <% end %>
         <% end %>
       </td>
       <td>
         <%= turbo_frame_tag 'book_genre' do %>
-          <%= link_to edit_book_path(book, search_params: @search_params), class: 'edit-book-link' do %>
+          <%= link_to edit_book_path(book), class: 'edit-book-link' do %>
             <span><%= book.genre %></span>
           <% end %>
         <% end %>
