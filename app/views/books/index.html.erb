@@ -1,7 +1,12 @@
 <h1>My books</h1>
 
 <div data-controller="filter">
+  <div id="create-form-container">
+    <%= turbo_frame_tag 'create_book', src: new_book_path, target: '_top'%>
+  </div>
+
   <%= form_with url: books_path, method: :get, remote: true do |f| %>
+
     <table class="datatable">
       <thead>
         <tr>
@@ -23,13 +28,30 @@
           </th>
         </tr>
       </thead>
+
       <tbody id="books" data-controller="cell">
-        <%= render partial: 'book_rows' %>
+        <%= render 'book_rows', books: @books %>
+      </tbody>
+
+      <tbody id="datatable-footer">
+        <tr class="last-row">
+          <td colspan="1" class="last-row-cell" id='limit-cell'>
+            <select name="limit" data-action="change->filter#setLimit">
+              <option value="10" <%= @limit == 10 ? 'selected' : '' %>>10</option>
+              <option value="50" <%= @limit == 50 ? 'selected' : '' %>>50</option>
+              <option value="100" <%= @limit == 100 ? 'selected' : '' %>>100</option>
+            </select>
+            Records / page
+          </td>
+          <%= render 'page_navigation', selected_page: @selected_page, pages_count: @pages_count %>
+        </tr>
       </tbody>
     </table>
+
     <%= f.hidden_field :limit, data: {filter_target: "limit"} %>
     <%= f.hidden_field :page, data: {filter_target: "page"} %>
     <%= f.hidden_field :order, data: {filter_target: "order"} %>
-    <%= f.submit style: "display: none", data: {filter_target: "submit"} %>
+    <%= f.submit style: "display: none", data: {filter_target: "submit", disable_with: false} %>
+
   <% end %>
 </div>

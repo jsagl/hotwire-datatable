@@ -1,1 +1,2 @@
-<%= turbo_stream.update "books", partial: 'book_rows', books: @books %>
+<%= turbo_stream.update "books", partial: 'book_rows', locals: {books: @books} %>
+<%= turbo_stream.replace "navigation-cell", partial: 'page_navigation', locals: {pages_count: @pages_count, selected_page: @selected_page} %>

@@ -19,6 +19,19 @@ class BooksController < ApplicationController
   def show
   end
 
+  def new
+    @book = Book.new
+  end
+
+  def create
+    @book = Book.create!(permitted_params)
+
+    respond_to do |format|
+      format.turbo_stream
+      format.html
+    end
+  end
+
   def edit
   end
 

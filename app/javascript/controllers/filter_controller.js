@@ -9,7 +9,6 @@ export default class extends Controller {
     if (e && e.keyCode === 13) { return } // don't submit form again if enter is pressed
 
     this.submitTarget.click()
-    this.submitTarget.disabled = false;
   }
 
   sort(event) {

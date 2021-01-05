@@ -26,12 +26,12 @@ export default class extends Controller {
     }
 
     displayDestroyLink(event) {
-        const link = event.currentTarget.querySelector('.delete-cell')
+        const link = event.currentTarget.querySelector('.delete-link')
         link.classList.remove('hidden')
     }
 
     hideDestroyLink(event) {
-        const link = event.currentTarget.querySelector('.delete-cell')
+        const link = event.currentTarget.querySelector('.delete-link')
         if (!link.classList.contains('hidden')) {
             link.classList.add('hidden')
         }

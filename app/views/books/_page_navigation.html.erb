@@ -1,0 +1,9 @@
+<td colspan="3" class='last-row-cell' id='navigation-cell'>
+  <% (1..pages_count).to_a.each do |page_num| %>
+    <% if page_num == selected_page %>
+      <button class="nav-btn active-nav-btn" type="button" data-action="click->filter#selectPage"><%= page_num %></button>
+    <% else %>
+      <button class="nav-btn" type="button" data-action="click->filter#selectPage"><%= page_num %></button>
+    <% end %>
+  <% end %>
+</td>

@@ -2,6 +2,12 @@
   border-collapse: collapse;
   width: 80%;
   margin: auto;
+  margin-top: 20px;
+}
+
+#create-form-container {
+  width: 80%;
+  margin: auto;
 }
 
 .datatable td, .datatable th {
@@ -110,6 +116,6 @@
   background-color: transparent;
 }
 
-.delete-cell.hidden {
+.delete-link.hidden {
   visibility: hidden;
 }
