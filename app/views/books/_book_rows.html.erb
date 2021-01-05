@@ -1,5 +1,5 @@
   <% @books.each do |book| %>
-    <tr>
+    <tr id="book_<%= book.id %>" data-action="mouseover->cell#displayDestroyLink mouseout->cell#hideDestroyLink">
       <td>
         <%= turbo_frame_tag 'book_title' do %>
           <%= link_to edit_book_path(book), class: 'edit-book-link' do %>
@@ -26,6 +26,11 @@
           <%= link_to edit_book_path(book), class: 'edit-book-link' do %>
             <span><%= book.genre %></span>
           <% end %>
+        <% end %>
+      </td>
+      <td class="delete-cell hidden">
+        <%= link_to book_path(book), method: :delete do %>
+          <i class="fas fa-trash"></i>
         <% end %>
       </td>
     </tr>

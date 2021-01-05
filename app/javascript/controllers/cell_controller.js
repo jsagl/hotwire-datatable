@@ -24,4 +24,16 @@ export default class extends Controller {
             this.cancelEditTarget.click();
         }
     }
+
+    displayDestroyLink(event) {
+        const link = event.currentTarget.querySelector('.delete-cell')
+        link.classList.remove('hidden')
+    }
+
+    hideDestroyLink(event) {
+        const link = event.currentTarget.querySelector('.delete-cell')
+        if (!link.classList.contains('hidden')) {
+            link.classList.add('hidden')
+        }
+    }
 }

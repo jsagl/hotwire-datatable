@@ -69,7 +69,6 @@
   height: 100%;
   display: flex;
   align-items: center;
-  cursor: text;
 }
 
 .edit-form {
@@ -93,4 +92,24 @@
 
 .edit-form-field:focus {
   outline: none;
+}
+
+.datatable .delete-cell {
+  padding-left: 5px;
+  border: none;
+  a {
+    color: #DADADA;
+    text-decoration: none;
+  }
+  a:hover {
+    color: #BBBBBB;
+  }
+}
+
+.datatable .delete-cell:hover {
+  background-color: transparent;
+}
+
+.delete-cell.hidden {
+  visibility: hidden;
 }
