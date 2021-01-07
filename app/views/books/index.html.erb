@@ -2,7 +2,7 @@
 
 <div data-controller="filter">
   <div id="create-form-container">
-    <%= turbo_frame_tag 'create_book', src: new_book_path, target: '_top'%>
+    <%= turbo_frame_tag 'create_book', src: new_book_path %>
   </div>
 
   <%= form_with url: books_path, method: :get, remote: true do |f| %>

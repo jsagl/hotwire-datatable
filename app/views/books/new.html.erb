@@ -1,12 +1,15 @@
-<div>hello</div>
-
-<%= turbo_frame_tag 'create_book' do %>
-  <%= form_with model: @book, data: {controller: 'resetForm', action: 'turbo:submit-end->resetForm#reset'} do |form| %>
-    <%= form.text_field :title, placeholder: 'Title' %>
-    <%= form.text_field :author, placeholder: 'Author' %>
-    <%= form.text_field :publisher, placeholder: 'Publisher' %>
-    <%= form.text_field :genre, placeholder: 'Genre' %>
-    <%= form.submit data: {disable_with: false} %>
+<%= turbo_frame_tag 'create_book', target: '_top' do %>
+  <% if @book.errors.any? %>
+    <div>errors</div>
+  <% else %>
+    <%= form_with model: @book, data: {controller: 'resetForm', action: 'turbo:submit-end->resetForm#reset'} do |form| %>
+        <%= form.text_field :title, placeholder: 'Title' %>
+        <%= form.text_field :author, placeholder: 'Author' %>
+        <%= form.text_field :publisher, placeholder: 'Publisher' %>
+        <%= form.text_field :genre, placeholder: 'Genre' %>
+        <%= form.submit data: {disable_with: false} %>
+      <% end %>
   <% end %>
+
 <% end %>
 

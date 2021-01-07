@@ -24,11 +24,15 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = Book.create!(permitted_params)
+    @book = Book.new(permitted_params)
 
     respond_to do |format|
-      format.turbo_stream
-      format.html
+      if @book.save
+        format.turbo_stream
+        format.html { redirect_to books_url(@book) }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+      end
     end
   end
 
